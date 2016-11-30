@@ -24,8 +24,8 @@ function sc_init() {
 		}
 	});
 
-	checkConnexion();
-	checkSCLoop();
+	//checkConnexion();
+	//checkSCLoop();
 }
 
 function checkConnexion() {

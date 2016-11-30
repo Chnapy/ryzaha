@@ -11,6 +11,10 @@ class Produit {
 		$sexe,
 		$url_img
 		;
+		
+	public static function getProduitWithId($id) {
+		
+	}
 	
 	public function __construct($id, $nom, $categorie, $prix, $couleur, $marque, $sexe, $url_img) {
 		
