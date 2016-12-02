@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 30 Novembre 2016 à 15:36
+-- Généré le :  Ven 02 Décembre 2016 à 16:23
 -- Version du serveur :  5.7.11
--- Version de PHP :  7.0.4
+-- Version de PHP :  5.6.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -66,6 +66,26 @@ INSERT INTO `marque` (`IdMarque`, `Nom`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `panier`
+--
+
+CREATE TABLE `panier` (
+  `id` int(11) NOT NULL,
+  `id_produit` int(4) NOT NULL,
+  `id_client` int(4) NOT NULL,
+  `quantite` int(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `panier`
+--
+
+INSERT INTO `panier` (`id`, `id_produit`, `id_client`, `quantite`) VALUES
+(1, 2, 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `produit`
 --
 
@@ -109,6 +129,12 @@ ALTER TABLE `marque`
   ADD PRIMARY KEY (`IdMarque`);
 
 --
+-- Index pour la table `panier`
+--
+ALTER TABLE `panier`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `produit`
 --
 ALTER TABLE `produit`
@@ -128,6 +154,11 @@ ALTER TABLE `client`
 --
 ALTER TABLE `marque`
   MODIFY `IdMarque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT pour la table `panier`
+--
+ALTER TABLE `panier`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `produit`
 --
