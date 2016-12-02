@@ -8,19 +8,23 @@ var profile = {
 };
 
 function sc_init() {
-	$('#sc-log-form').on('submit', function (e) {
+	/*$('#sc-log-form').on('submit', function (e) {
 		e.preventDefault();
 		console.debug($(this));
 		connexion($(this));
-	});
+	});*/
 
 	$(document).click(function (e) {
-		var cible = $(".sc-log-form");
+		var cible = $("#forms");
 		var container = $(".sc-log.not-log");
 		if (!container.is(e.target) && container.has(e.target).length === 0) {
 			smooth_hide(cible);
 		} else {
+			if($(cible).hasClass('hide2')) {
+				$('#sc-log-form').show();
+				$('#inscription').hide();
 			smooth_show(cible);
+			}
 		}
 	});
 

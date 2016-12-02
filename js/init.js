@@ -4,7 +4,7 @@
 function onLoad() {
 	init();
 	ajax_init();
-	//sc_init();
+	sc_init();
 	//recherche_init();
 	form_init();
 	initVitrine();

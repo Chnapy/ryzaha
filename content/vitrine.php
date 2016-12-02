@@ -29,14 +29,12 @@
 	
 	<?php
 	
-	$p = new Produit(12, "NomProduit", "Chaussette", "15€00", "Noir", "Adidas", "Homme", "http://demandware.edgesuite.net/sits_pod14-adidas/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw55f9d113/zoom/AY8707_01_standard.jpg?sw=500&sfrm=jpg");
-	$p->echoHTML();
-	$p->echoHTML();
-	$p->echoHTML();
-	$p->echoHTML();
-	$p->echoHTML();
-	$p->echoHTML();
-	$p->echoHTML();
+	
+	//$p = new Produit(12, "NomProduit", "Chaussette", 1500, "Noir", "Adidas", "Homme", "http://demandware.edgesuite.net/sits_pod14-adidas/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw55f9d113/zoom/AY8707_01_standard.jpg?sw=500&sfrm=jpg");
+	$all = Produit::getAllProduit();
+	foreach($all as $p) {
+		$p->echoHTML();
+	}
 	
 	?>
 	

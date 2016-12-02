@@ -3,9 +3,9 @@
 define('BDD_HOST', 'localhost');
 define('BDD_LOGIN', 'root');
 define('BDD_MDP', '');
-define('BDD_DATABASE', 'test');
+define('BDD_DATABASE', 'habits');
 
-class SPDO{
+class SPDO {
   private $PDOInstance = null;
   private static $instance = null;
   
@@ -16,7 +16,7 @@ class SPDO{
   	  $this->PDOInstance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     catch (PDOException $e){
-      die('<p>La connexion a Ã©chouÃ©. Erreur['.$e->getCode().'] : '.$e->getMessage().'</p>');
+      die('<p>La connexion a échouée. Erreur['.$e->getCode().'] : '.$e->getMessage().'</p>');
     }
   }
   
@@ -25,13 +25,7 @@ class SPDO{
       //echo "===> Creation instance\r\n";
       self::$instance = new SPDO();
     }
-    else
-     // echo "Instance existe !\r\n";
     return self::$instance;
-  }
-  
-  public function query($query){
-    return $this->PDOInstance->query($query);
   }
   
   public function prepare($query){
@@ -40,21 +34,8 @@ class SPDO{
   
   public function lastInsertId($name=null){
     return $this->PDOInstance->lastInsertId($name);
-  }  
+  }
 
 }
-
-
-function fonctionA(){
-  $pdo = SPDO::getBD();
-}
-
-function fonctionB(){
-  $pdo = SPDO::getBD();
-}
-
-fonctionB();
-fonctionA();
-$pdo = SPDO::getBD();
 
 ?>

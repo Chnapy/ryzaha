@@ -1,6 +1,8 @@
 <?php
 
-		const CFG_PATH = "data/cfg.json";
-		const CFG_DEFAULT_PATH = "data_default/cfg_default.json";
-
+		require_once 'main/spdo.php';
+		
+	 require_once 'content/client/HeadConnecte.php';
+	 require_once 'content/client/HeadDeconnecte.php';
+	 require_once 'content/client/Client.php';
 		require_once 'content/produit.php';
