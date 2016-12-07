@@ -16,6 +16,11 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+DROP table client;
+DROP table marque;
+DROP table panier;
+DROP table produit;
+
 --
 -- Base de données :  `habits`
 --
@@ -29,17 +34,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `client` (
   `IdClient` int(11) NOT NULL,
   `Nom` char(15) NOT NULL,
-  `Prénom` char(15) NOT NULL,
+  `Prenom` char(15) NOT NULL,
   `Mail` varchar(50) NOT NULL,
-  `MotDePasse` char(20) NOT NULL
+  `MotDePasse` char(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `client`
 --
 
-INSERT INTO `client` (`IdClient`, `Nom`, `Prénom`, `Mail`, `MotDePasse`) VALUES
-(1, 'Ali', 'Abdelhamid', 'abdelhamid.ali@laposte.net', '123soleil');
+INSERT INTO `client` (`IdClient`, `Nom`, `Prenom`, `Mail`, `MotDePasse`) VALUES
+(1, 'Ali', 'Abdelhamid', 'abdelhamid.ali@laposte.net', '18850153f825f7c2f7408b1a79c88dcf221ae1b7');
 
 -- --------------------------------------------------------
 
@@ -106,11 +111,11 @@ CREATE TABLE `produit` (
 --
 
 INSERT INTO `produit` (`IdProduit`, `Marque`, `Nom`, `Taille`, `Sexe`, `Couleur`, `Prix`, `Categorie`, `URLimg`) VALUES
-(1, 'HILFIGER DENIM', 'T-shirt basique', 'XS', 'Homme', 'Blanc', 20, '', ''),
-(2, 'HOLLISTER CO.', 'T-shirt basique', 'XS', 'Homme', 'Gris', 14, '', ''),
-(3, 'LACOSTE', 'T-shirt imprimé', 'S', 'Homme', 'Bleu', 44, '', ''),
-(4, 'URBAN CLASSICS', 'T-shirt imprimé', 'S', 'Homme', 'Noir', 20, '', ''),
-(5, 'JACK & JONES', 'T-shirt imprimé', 'S', 'Homme', 'Bleu', 13, '', '');
+(1, 'HILFIGER DENIM', 'T-shirt basique', 'XS', 'Homme', 'Blanc', 2000, 'T-Shirt', 'https://images-na.ssl-images-amazon.com/images/I/81HuuJrzdXL._UX342_.jpg'),
+(2, 'HOLLISTER CO.', 'T-shirt basique', 'XS', 'Homme', 'Gris', 1400, 'T-Shirt', 'https://images-na.ssl-images-amazon.com/images/I/81HuuJrzdXL._UX342_.jpg'),
+(3, 'LACOSTE', 'T-shirt imprimé', 'S', 'Homme', 'Bleu', 4400, 'T-Shirt', 'https://images-na.ssl-images-amazon.com/images/I/81HuuJrzdXL._UX342_.jpg'),
+(4, 'URBAN CLASSICS', 'T-shirt imprimé', 'S', 'Homme', 'Noir', 2000, 'T-Shirt', 'https://images-na.ssl-images-amazon.com/images/I/81HuuJrzdXL._UX342_.jpg'),
+(5, 'JACK & JONES', 'T-shirt imprimé', 'S', 'Homme', 'Bleu', 1300, 'T-Shirt', 'https://images-na.ssl-images-amazon.com/images/I/81HuuJrzdXL._UX342_.jpg');
 
 --
 -- Index pour les tables exportées

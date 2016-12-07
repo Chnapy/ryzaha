@@ -30,7 +30,11 @@ switch ($m) {
 		require_once 'content/affichage_produit.php';
 		endHTML();
 		exit();
-		
+	case "panier":
+		beginHTML();
+		require_once 'content/affichage_panier.php';
+		endHTML();
+		exit();
 	default:
 		exit();
 }
@@ -47,7 +51,7 @@ function beginHTML() {
 	<!DOCTYPE html>
 	<html>
 		<head>
-			<title>todo</title>
+			<title>RYZAHA</title>
 			<meta charset="UTF-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -82,7 +86,7 @@ function beginHTML() {
 		<?php 
 
 if(Client::isConnected()) {
-	$head = new HeadConnecte(unserialize($_SESSION['client']));
+	$head = new HeadConnecte(Client::getClient());
 } else {
 	$head = new HeadDeconnecte();
 }

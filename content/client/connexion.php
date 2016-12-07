@@ -1,6 +1,6 @@
 <?php
 
-	if(isset($_POST['email'])) {
+if(isset($_POST['email'])) {
     $mail = $_POST['email'];
 	$mdp = sha1($_POST['pass']);
 	
@@ -12,5 +12,4 @@
 	} catch(Exception $e) {
 		$error_log = $e->getMessage();
 	}
-	}
-?>
+}

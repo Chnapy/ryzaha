@@ -10,7 +10,8 @@ class Produit {
 		$marque,
 		$sexe,
 		$url_img,
-		$taille
+		$taille,
+		$quantite
 		;
 		
 	public static function getProduitWithId($id) {
@@ -64,10 +65,23 @@ class Produit {
 		$this->sexe = $sexe;
 		$this->url_img = $url_img;
 		$this->taille = $taille;
+		$this->quantite = 1;
 	}
 	
-	private function prixToTxt() {
-		$p = (string) $this->prix;
+	function getPrix() {
+		return $this->prix;
+	}
+	
+	function getQuantite() {
+		return $this->quantite;
+	}
+	
+	private function prixToTxt($prix = null) {
+		return self::prixToTxt2($prix === null ? $this->prix : $prix);
+	}
+	
+	static function prixToTxt2($prix) {
+		$p = (string) $prix;
 		
 		while(strlen($p) < 4) {
 			$p = '0' . $p;
@@ -79,6 +93,10 @@ class Produit {
 		return $euros . "€<sub>" . $centimes . "</sub>";
 	}
 	
+	function setQuantite($q) {
+		$this->quantite = $q;
+	}
+	
 	function echoHTML() {
 		?>
 		
@@ -86,8 +104,8 @@ class Produit {
 			<div class="o-real">
 			</div>
 			<div class="o-tags"><?php echo $this->sexe; ?></div>
-			<div class="o-saga gog-btn gog-active"></div>
-			<!--<span class="glyphicon glyphicon-floppy-remove o-no-file"></span>-->
+			<!--<div class="o-saga gog-btn gog-active"></div>
+			<span class="glyphicon glyphicon-floppy-remove o-no-file"></span>-->
 			<div class="o-notes">
 				<!--<div class="o-note-glob loadable"></div>-->
 				<div class="o-manote loadable l-white" style="width: 60px"><?php echo $this->prixToTxt(); ?></div>
@@ -220,7 +238,9 @@ class Produit {
 					<div class="o-manote" style="width: 60px">
 						<?php echo $this->prixToTxt(); ?>
 					</div>
-					<button class="gog-btn-big gog-active" onclick="location.href='#'" style="margin-top: 20px">Acheter</button>
+					<button class="gog-btn-big gog-active" onclick="location.href='?m=panier&m2=ajout&id=<?php echo $this->id; ?>'" style="margin-top: 20px">
+						Ajouter au panier
+					</button>
 				</div><!--
 				<div class='saga loadable'>
 					<div class="mini-titre">Saga</div>
@@ -248,7 +268,28 @@ class Produit {
 		<?php
 	}
 	
-	
+	function echoPanier() {
+		?>
+		
+		<tr class="<!--list2-->">
+							<td class="gog-td-label" style="text-align: right;">
+								<!--<a href="?m=produit&id=<?php echo $this->id; ?>"><?php echo $this->nom; ?></a>-->
+								<?php $this->echoHTML(); ?>
+							</td>
+							<td>
+								<label for="quant<?php echo $this->id; ?>">Quantite</label>
+								<input type="number" name="quantite" id="quant<?php echo $this->id; ?>" value="<?php echo $this->quantite; ?>" style="width:35px;">
+							</td>
+							<td>
+								Prix total : <?php echo $this->prixToTxt($this->prix * $this->quantite); ?>
+							</td>
+							<td>
+								<button class="gog-btn" style="min-width:0;" onclick="location.href='?m=panier&m2=delete&id=<?php echo $this->id; ?>'"><i class="fui-cross"></i></button>
+							</td>
+						</tr>
+		
+		<?php
+	}
 	
 	
 	

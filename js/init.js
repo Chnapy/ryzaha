@@ -19,9 +19,10 @@ function init() {
 	$('#ipsc').on('input', function () {
 		checkLienSC($(this).val());
 	});
-
+/*
 	$(document).click(function (e) {
 		$(".gog-modal").each(function () {
+				return;
 			if ($(this).hasClass('hide2')) {
 				return;
 			}
@@ -38,7 +39,7 @@ function init() {
 			}
 		});
 	});
-
+*/
 	$(document).click(function (e) {
 		var cible, dropdown;
 		$('.dropdown-back').each(function () {

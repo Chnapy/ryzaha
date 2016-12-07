@@ -1,47 +1,29 @@
 <?php
 
+require_once 'content/client/Panier.php';
+
 class Client {
-  private $id=null;
+  private $id;
   private $nom;
   private $prenom;
   private $mail;
+  private $panier;
   
   public static function isConnected() {
 	  return isset($_SESSION['client']);
   }
   
-  private function __construct($id=null){
-		
+  public static function getClient() {
+	  $c = unserialize($_SESSION['client']);
+	  $c->panier = new Panier($c);
+		$c->panier->defAllProduits();
+	  return $c;
   }
   
-  /*
-  private function getInfoId($id){
-    $pdo = SPDO::getBD();
-    $req = 'SELECT * FROM individu WHERE id=:id';
-    $stmt = $pdo->prepare($req);
-    $stmt->bindValue(':id', $id);
-    if ($stmt->execute()){
-      $nbRows = $stmt->rowCount();
-      if ($nbRows==1){
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        $this->id = $row['id'];
-        $this->nom = $row['nom'];
-        $this->taille = $row['taille'];
-        $this->masse = $row['masse'];
-      }
-      else{
-        $this->id = null;
-        $this->nom = null;
-        $this->taille = null;
-        $this->masse = null;
-      }
-    }
-    else{
-      $message = print_r($stmt->errorInfo(), true);
-      throw new Exception($message);
-    }
+  private function __construct(){
+		$this->panier = new Panier($this);
+		$this->panier->defAllProduits();
   }
-  */
   
   public function __set($propriete, $valeur){
     switch ($propriete){
@@ -82,6 +64,7 @@ class Client {
       case 'prenom':
 	  case 'mail':
       case 'mdp':
+      case 'panier':
         return $this->$propriete;
         break;
       default :
@@ -133,15 +116,15 @@ class Client {
 	
 	
 	public static function connexion ($mail,$mdp) {
+		var_dump($mail);
+		var_dump($mdp);
 		$pdo = SPDO::getBD();
 		$req = 'SELECT * FROM client WHERE Mail=:mail AND MotDePasse=:mdp';
 		$stmt = $pdo->prepare($req);
 		$stmt->bindValue(':mail', $mail);
 		$stmt->bindValue(':mdp', $mdp);
 		if ($stmt->execute()) {
-		  $nbRows = $stmt->rowCount(); // compte les lignes 
-		  if ($nbRows==1){ // le nombre de ligne est-il égale à 1 ?
-			$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		  if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			
 			// on renvoie l'objet client 
 			$c = new Client();
@@ -151,8 +134,7 @@ class Client {
 			$c->mail = $row['Mail'];
 			return $c;
 			
-		  }
-		  else{
+		  } else {
 			throw new Exception("Mot de passe ou mail incorrect.");
 		  }
 		}

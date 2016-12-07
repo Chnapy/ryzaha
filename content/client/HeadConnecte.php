@@ -19,6 +19,9 @@ class HeadConnecte {
 		<a class="nav_item a" href="index.php">
 			Accueil
 		</a>
+		<a class="nav_item a" href="?m=panier">
+			Panier
+		</a>
 	</div>
 	<div class="nav_item nav_right">
 		<div class="head-sc nav_item a">
