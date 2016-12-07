@@ -33,13 +33,19 @@ class Produit {
 		return new Produit($id, $r['Nom'], $r['Categorie'], $r['Prix'], $r['Couleur'], $r['Marque'], $r['Sexe'], $r['URLimg'], $r['Taille']);
 	}
 	
-	public static function getAllProduit() {
-		$query = "select * from produit";
+	public static function getAllProduit($categorie) {
+		if($categorie === 'all') {
+			$query = "select * from produit";
+			$a = array();
+		} else {
+			$query = "select * from produit where lower(Categorie)=?";
+			$a = array(strtolower($categorie));
+		}
 		
 		$bd = SPDO::getBD();
 		
 		$p = $bd->prepare($query);
-		$s = $p->execute();
+		$s = $p->execute($a);
 		
 		if(!$s) {
 			die("Produits non trouvés");

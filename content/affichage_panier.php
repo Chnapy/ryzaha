@@ -24,7 +24,7 @@ $produits = $client->panier->getListeProduits();
 $prixTotal = 0;
 ?>
 
-<div>
+<div style="min-height: 100%; padding-bottom: 200px;position:relative;">
 		<div class="log-form scan_pane module gog-form" style="background: transparent;box-shadow: none;">
 
 			<form action="#" method="POST" class="gog-form smooth" id='param-form'>
@@ -56,4 +56,5 @@ $prixTotal = 0;
 				<p class="gog-form-description param-form-error error"></p>
 			</form>
 		</div>
+	<?php require_once 'content/footer.php'; ?>
 	</div>

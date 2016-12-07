@@ -25,18 +25,21 @@
 
 	</div>
 	
-	<div id="content-body" class="smooth">
+	<div id="content-body" class="smooth" style="min-height: 100%; padding-bottom: 200px;position:relative;">
 	
 	<?php
 	
+	$categorie = isset($_GET['categorie']) ? $_GET['categorie'] : 'all';
 	
-	//$p = new Produit(12, "NomProduit", "Chaussette", 1500, "Noir", "Adidas", "Homme", "http://demandware.edgesuite.net/sits_pod14-adidas/dw/image/v2/aagl_prd/on/demandware.static/-/Sites-adidas-products/default/dw55f9d113/zoom/AY8707_01_standard.jpg?sw=500&sfrm=jpg");
-	$all = Produit::getAllProduit();
+	$all = Produit::getAllProduit($categorie);
 	foreach($all as $p) {
 		$p->echoHTML();
 	}
 	
 	?>
 	
+	
+	
+	<?php require_once 'content/footer.php'; ?>
 	</div>
 </div>

@@ -106,7 +106,7 @@ if(Client::isConnected()) {
 
 		function endHTML() {
 			?>
-</div>
+			</div>
 			<div id="alerts">
 			</div>
 			<script src="js/jquery-2.2.1.min.js"></script>
