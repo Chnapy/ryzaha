@@ -144,6 +144,47 @@ class Client {
 		}
 	}
 	
+	public function ajouterProduitPanier($idProduit,$quantite)
+	{
+		$pdo = SPDO::getBD();
+		$req = 'INSERT INTO panier (id_produit,id_client,quantite) VALUES (:id_produit, :id_client,:quantite)';
+		$stmt = $pdo->prepare($req);
+		$stmt->bindValue(':id_produit', $idProduit);
+		$stmt->bindValue(':id_client', $this->id);
+		$stmt->bindValue(':quantite', $quantite);
+		if ($stmt->execute())
+		{	
+			echo "bien enregistrer";
+
+		}
+		else
+		{
+			$message = print_r($stmt->errorInfo(), true);
+			throw new Exception($message);
+		}
+	}
+
+	public function supprimerProduitPanier($idProduit)
+	{
+		$pdo = SPDO::getBD();
+		$req = 'DELETE FROM panier WHERE id_produit = :id_produit AND id_client = :id_client';
+		$stmt = $pdo->prepare($req);
+		$stmt->bindValue(':id_produit', $idProduit);
+		$stmt->bindValue(':id_client', $this->id);
+		if ($stmt->execute())
+		{	
+			echo "bien supprimer";
+
+		}
+		else
+		{
+			$message = print_r($stmt->errorInfo(), true);
+			throw new Exception($message);
+		}				
+	}
+	
+	
+	
 }
 
 
